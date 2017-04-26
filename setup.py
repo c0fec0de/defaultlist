@@ -26,7 +26,7 @@ config = {
         'Programming Language :: Python :: 3.6',
     ],
     'keywords': 'defaultlist list defaultdict collections',
-    'packages': ['defaultlist'],
+    'packages': ['defaultlist.py'],
     'extras_require': {
         'dev': ['check-manifest'],
         'test': ['coverage'],
