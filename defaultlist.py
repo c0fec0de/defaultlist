@@ -71,7 +71,7 @@ class defaultlist(list):
     def __fill(self, index):
         missing = index - len(self) + 1
         if index >= 0 and missing > 0:
-            self += [self.__factory() for _ in range(missing)]
+            self += [self.__factory() for idx in range(missing)]
 
     def __setitem__(self, index, value):
         self.__fill(index)
