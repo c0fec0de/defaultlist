@@ -70,7 +70,7 @@ class defaultlist(list):
 
     def __fill(self, index):
         missing = index - len(self) + 1
-        if missing > 0:
+        if index >= 0 and missing > 0:
             self += [self.__factory() for _ in range(missing)]
 
     def __setitem__(self, index, value):
@@ -90,8 +90,8 @@ class defaultlist(list):
     def __getslice__(self, start, end):  # pragma: no cover
         # python 2.x legacy
         r = defaultlist(factory=self.__factory)
-        r.__fill(end)
         r += list.__getslice__(self, start, end)
+        r.__fill(end)
         return r
 
     def __add__(self, other):
