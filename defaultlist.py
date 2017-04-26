@@ -79,20 +79,31 @@ class defaultlist(list):
 
     def __getitem__(self, index):
         if isinstance(index, slice):
-            self.__fill(index.stop)
-            r = defaultlist(factory=self.__factory)
-            r += list.__getitem__(self, index)
-            return r
+            return self.__getslice(index.start, index.stop, index.step)
         else:
             self.__fill(index)
             return list.__getitem__(self, index)
 
-    def __getslice__(self, start, end):  # pragma: no cover
+    def __getslice__(self, start, stop, step=None):  # pragma: no cover
         # python 2.x legacy
-        r = defaultlist(factory=self.__factory)
-        r += list.__getslice__(self, start, end)
-        r.__fill(end)
-        return r
+        return self.__getslice(start, stop, step)
+
+    def __getslice(self, start, stop, step):
+            start = start or 0
+            step = step or 1
+            if stop is None:
+                stop = len(self)
+            elif stop < 0:
+                stop = len(self) + stop
+            else:
+                self.__fill(stop)
+                stop += 1
+            assert len(self) >= stop
+            r = defaultlist(factory=self.__factory)
+            print("FOO", start, stop, step, list(range(start, stop, step)), self)
+            for idx in range(start, stop, step):
+                r.append(list.__getitem__(self, idx))
+            return r
 
     def __add__(self, other):
         if isinstance(other, list):

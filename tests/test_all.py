@@ -3,6 +3,7 @@ from nose.tools import eq_
 
 from helper import assert_raises
 
+
 def test_simple():
     """Simple scenario."""
     l = defaultlist()
@@ -58,6 +59,7 @@ def test_add():
 
 
 def test_iadd():
+    """iadd operator."""
     a = defaultlist()
     b = [1, 2]
     a += a
@@ -77,14 +79,56 @@ def test_slice():
     l[2] = "C"
     l[4]
     eq_(l, [None, None, 'C', None, None])
+    c = l[1:]
+    eq_(c, [None, 'C', None, None])
     c = l[1:-1]
     eq_(c, [None, 'C', None])
     assert isinstance(c, defaultlist)
     c[6] = 'c0fe'
     eq_(c, [None, 'C', None, None, None, None, 'c0fe'])
 
-    d = l[1:8]
-    eq_(d, [None, 'C', None, None, None, None, None])
+
+def test_slice_step():
+    """Slice Selection with step."""
+    l = defaultlist()
+    l[0] = 'a'
+    l[1] = 'b'
+    l[2] = 'c'
+    l[3] = 'd'
+    l[4] = 'e'
+    l[5] = 'f'
+
+    d = l[1:6:2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None])
+    eq_(d, ['b', 'd', 'f'])
+
+    d = l[:6:2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None])
+    eq_(d, ['a', 'c', 'e', None])
+
+    d = l[1:6:2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None])
+    eq_(d, ['b', 'd', 'f'])
+
+    d = l[:7:2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
+    eq_(d, ['a', 'c', 'e', None])
+
+    d = l[1:7:2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
+    eq_(d, ['b', 'd', 'f', None])
+
+    d = l[::2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
+    eq_(d, ['a', 'c', 'e', None])
+
+    d = l[1::2]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
+    eq_(d, ['b', 'd', 'f', None])
+
+    d = l[1::]
+    eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
+    eq_(d, ['b', 'c', 'd', 'e', 'f', None, None])
 
 
 def test_copy():
