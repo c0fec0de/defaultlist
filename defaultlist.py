@@ -54,7 +54,7 @@ Please be aware that these functions are shared between shallow copies of the li
 
 if hasattr(list, "__getslice__"):  # pragma: no cover
     def _getslice(self, start, end):
-        r = defaultlist(factory=self.__factory)
+        r = defaultlist(factory=self._factory)
         r += list.__getslice__(self, start, end)
         return r
 else:
@@ -76,12 +76,12 @@ class defaultlist(list):
         if factory is None:
             def factory():
                 return None
-        self.__factory = factory
+        self._factory = factory
 
     def __fill(self, index):
         missing = index - len(self) + 1
         if missing > 0:
-            self += [self.__factory() for _ in range(missing)]
+            self += [self._factory() for _ in range(missing)]
 
     def __setitem__(self, index, value):
         self.__fill(index)
@@ -90,7 +90,7 @@ class defaultlist(list):
     def __getitem__(self, index):
         if isinstance(index, slice):
             self.__fill(index.stop)
-            r = defaultlist(factory=self.__factory)
+            r = defaultlist(factory=self._factory)
             r += list.__getitem__(self, index)
             return r
         else:
@@ -107,6 +107,6 @@ class defaultlist(list):
 
     def copy(self):
         """Return a shallow copy of the list. Equivalent to a[:]."""
-        r = defaultlist(factory=self.__factory)
+        r = defaultlist(factory=self._factory)
         r += self
         return r
