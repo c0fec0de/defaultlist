@@ -52,8 +52,18 @@ Please be aware that these functions are shared between shallow copies of the li
 [0, 1, 'C', 3, 4, 8, 9]
 """
 
+if hasattr(list, "__getslice__"):  # pragma: no cover
+    def _getslice(self, start, end):
+        r = defaultlist(factory=self.__factory)
+        r += list.__getslice__(self, start, end)
+        return r
+else:
+    _getslice = None
+
 
 class defaultlist(list):
+
+    __getslice__ = _getslice
 
     def __init__(self, factory=None):
         """

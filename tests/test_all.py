@@ -83,6 +83,9 @@ def test_slice():
     c[6] = 'c0fe'
     eq_(c, [None, 'C', None, None, None, None, 'c0fe'])
 
+    d = l[1:8]
+    eq_(d, [None, 'C', None, None, None, None, None])
+
 
 def test_copy():
     """copy()."""
