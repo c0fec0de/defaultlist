@@ -76,16 +76,28 @@ def test_iadd():
 def test_slice():
     """Slice selection."""
     l = defaultlist()
-    l[2] = "C"
-    l[4]
-    eq_(l, [None, None, 'C', None, None])
+    l += list(range(5))
+    eq_(l, [0, 1, 2, 3, 4])
     c = l[1:]
-    eq_(c, [None, 'C', None, None])
+    eq_(c, [1, 2, 3, 4])
     c = l[1:-1]
-    eq_(c, [None, 'C', None])
-    assert isinstance(c, defaultlist)
-    c[6] = 'c0fe'
-    eq_(c, [None, 'C', None, None, None, None, 'c0fe'])
+    eq_(c, [1, 2, 3])
+    c[5] = 'c0fe'
+    eq_(c, [1, 2, 3, None, None, 'c0fe'])
+
+
+def test_slice_ref():
+    """Slice reference implementation."""
+    r = list(range(10))
+    l = defaultlist()
+    l += r
+    eq_(l[-4:9], r[-4:9])
+    eq_(l[0:9], r[0:9])
+    eq_(l[:9], r[:9])
+    eq_(l[-4:8], r[-4:8])
+    eq_(l[0:], r[0:])
+    eq_(l[:-2], r[:-2])
+    eq_(list(l), r)
 
 
 def test_slice_step():
@@ -104,7 +116,7 @@ def test_slice_step():
 
     d = l[:6:2]
     eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None])
-    eq_(d, ['a', 'c', 'e', None])
+    eq_(d, ['a', 'c', 'e'])
 
     d = l[1:6:2]
     eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None])
@@ -116,7 +128,7 @@ def test_slice_step():
 
     d = l[1:7:2]
     eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])
-    eq_(d, ['b', 'd', 'f', None])
+    eq_(d, ['b', 'd', 'f'])
 
     d = l[::2]
     eq_(l, ['a', 'b', 'c', 'd', 'e', 'f', None, None])

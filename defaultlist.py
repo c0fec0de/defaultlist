@@ -92,21 +92,25 @@ class defaultlist(list):
             stop = None
         return self.__getslice(start, stop, step)
 
+    def __normidx(self, idx, default):
+        if idx is None:
+            idx = default
+        elif idx < 0:
+            idx += len(self)
+        return idx
+
     def __getslice(self, start, stop, step):
-            start = start or 0
-            step = step or 1
-            if stop is None:
-                stop = len(self)
-            elif stop < 0:
-                stop = len(self) + stop
-            else:
-                self.__fill(stop)
-                stop += 1
-            assert len(self) >= stop
-            r = defaultlist(factory=self.__factory)
-            for idx in range(start, stop, step):
-                r.append(list.__getitem__(self, idx))
-            return r
+        end = max((start or 0, stop or 0, 0))
+        if end:
+            self.__fill(end)
+        start = self.__normidx(start, 0)
+        stop = self.__normidx(stop, len(self))
+        step = step or 1
+        assert len(self) >= stop
+        r = defaultlist(factory=self.__factory)
+        for idx in range(start, stop, step):
+            r.append(list.__getitem__(self, idx))
+        return r
 
     def __add__(self, other):
         if isinstance(other, list):
