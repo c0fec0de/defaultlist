@@ -73,9 +73,11 @@ class defaultlist(list):
         assert index >= 0, "Invalid index: %r" % index
         missing = index - len(self) + 1
         if missing > 0:
-            assert False, "foo %r" % missing
-            for idx in range(missing):
-                self.append(self.__factory())
+            try:
+                for idx in range(missing):
+                    self.append(self.__factory())
+            except OverflowError:
+                assert False, "Foo %r" % (missing)
 
     def __setitem__(self, index, value):
         self.__fill(index)
