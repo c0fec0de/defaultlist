@@ -69,6 +69,8 @@ class defaultlist(list):
         self.__factory = factory
 
     def __fill(self, index):
+        assert isinstance(index, int), "Invalid index: %r of %r" % (index, type(index))
+        assert index >= 0, "Invalid index: %r" % index
         missing = index - len(self) + 1
         if index >= 0 and missing > 0:
             self += [self.__factory() for idx in range(missing)]
