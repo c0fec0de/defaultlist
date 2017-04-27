@@ -71,15 +71,9 @@ class defaultlist(list):
         self.__factory = factory
 
     def __fill(self, index):
-        assert isinstance(index, int), "Invalid index: %r of %r" % (index, type(index))
-        assert index >= 0, "Invalid index: %r" % index
         missing = index - len(self) + 1
         if missing > 0:
-            try:
-                for idx in range(missing):
-                    self.append(self.__factory())
-            except OverflowError:
-                assert False, "Foo %r %r %r %r" % (index, len(self), missing, self)
+            self += [self.__factory() for idx in range(missing)]
 
     def __setitem__(self, index, value):
         self.__fill(index)
@@ -95,7 +89,7 @@ class defaultlist(list):
     def __getslice__(self, start, stop, step=None):  # pragma: no cover
         # python 2.x legacy
         if stop == sys.maxint:
-            stop = len(self) - 1
+            stop = None
         return self.__getslice(start, stop, step)
 
     def __getslice(self, start, stop, step):
@@ -110,7 +104,6 @@ class defaultlist(list):
                 stop += 1
             assert len(self) >= stop
             r = defaultlist(factory=self.__factory)
-            print("FOO", start, stop, step, list(range(start, stop, step)), self)
             for idx in range(start, stop, step):
                 r.append(list.__getitem__(self, idx))
             return r
