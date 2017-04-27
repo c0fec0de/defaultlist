@@ -119,6 +119,10 @@ class defaultlist(list):
         else:
             return list.__add__(self, other)
 
+    def __len__(self):
+        # python 2.x seems to need this
+        return list.__len__(self)
+
     def copy(self):
         """Return a shallow copy of the list. Equivalent to a[:]."""
         r = defaultlist(factory=self.__factory)

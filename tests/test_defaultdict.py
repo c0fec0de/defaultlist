@@ -161,3 +161,13 @@ def test_copy_inc():
     eq_(c, [0, 1, 'C', 3, 4, 5, 'c0fe'])
     l[6]
     eq_(l, [0, 1, 'C', 3, 4, 7, 8])
+
+
+def test_len():
+    """Length."""
+    l = defaultlist()
+    eq_(len(l), 0)
+    l[2] = "C"
+    eq_(len(l), 3)
+    l[4]
+    eq_(len(l), 5)
