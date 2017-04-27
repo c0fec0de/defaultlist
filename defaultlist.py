@@ -106,7 +106,6 @@ class defaultlist(list):
         start = self.__normidx(start, 0)
         stop = self.__normidx(stop, len(self))
         step = step or 1
-        assert len(self) >= stop
         r = defaultlist(factory=self.__factory)
         for idx in range(start, stop, step):
             r.append(list.__getitem__(self, idx))
