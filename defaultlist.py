@@ -52,6 +52,8 @@ Please be aware that these functions are shared between shallow copies of the li
 [0, 1, 'C', 3, 4, 8, 9]
 """
 
+import sys
+
 
 class defaultlist(list):
 
@@ -77,7 +79,7 @@ class defaultlist(list):
                 for idx in range(missing):
                     self.append(self.__factory())
             except OverflowError:
-                assert False, "Foo %r %r %r" % (index, len(self), missing)
+                assert False, "Foo %r %r %r %r" % (index, len(self), missing, self)
 
     def __setitem__(self, index, value):
         self.__fill(index)
@@ -92,6 +94,8 @@ class defaultlist(list):
 
     def __getslice__(self, start, stop, step=None):  # pragma: no cover
         # python 2.x legacy
+        if stop == sys.maxint:
+            stop = len(self) - 1
         return self.__getslice(start, stop, step)
 
     def __getslice(self, start, stop, step):
@@ -118,10 +122,6 @@ class defaultlist(list):
             return r
         else:
             return list.__add__(self, other)
-
-    def __len__(self):
-        # python 2.x seems to need this
-        return list.__len__(self)
 
     def copy(self):
         """Return a shallow copy of the list. Equivalent to a[:]."""
