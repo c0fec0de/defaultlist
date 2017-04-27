@@ -77,7 +77,7 @@ class defaultlist(list):
                 for idx in range(missing):
                     self.append(self.__factory())
             except OverflowError:
-                assert False, "Foo %r" % (missing)
+                assert False, "Foo %r %r %r" % (index, len(self), missing)
 
     def __setitem__(self, index, value):
         self.__fill(index)
