@@ -13,6 +13,13 @@ Added indicies are filled with `None` by default.
 >>> l
 [None, None, 'C', None, None]
 
+Slices and negative indicies are supported likewise
+
+>>> l[1:4]
+[None, 'C', None]
+>>> l[-3]
+'C'
+
 Simple factory functions can be created via `lambda`.
 
 >>> l = defaultlist(lambda: 'empty')
@@ -50,6 +57,8 @@ Please be aware that these functions are shared between shallow copies of the li
 9
 >>> l
 [0, 1, 'C', 3, 4, 8, 9]
+
+
 """
 
 import sys
