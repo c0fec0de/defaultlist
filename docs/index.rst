@@ -17,6 +17,12 @@ defaultlist
 .. image:: https://codeclimate.com/github/c0fec0de/defaultlist.png
     :target: https://codeclimate.com/github/c0fec0de/defaultlist
 
+.. image:: https://img.shields.io/pypi/pyversions/defaultlist.svg
+   :target: https://pypi.python.org/pypi/defaultlist
+
+.. image:: https://landscape.io/github/c0fec0de/defaultlist/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/c0fec0de/defaultlist/master
+
 Usage
 =====
 

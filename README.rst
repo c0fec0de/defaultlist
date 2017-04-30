@@ -13,6 +13,12 @@
 .. image:: https://codeclimate.com/github/c0fec0de/defaultlist.png
     :target: https://codeclimate.com/github/c0fec0de/defaultlist
 
+.. image:: https://img.shields.io/pypi/pyversions/defaultlist.svg
+   :target: https://pypi.python.org/pypi/defaultlist
+
+.. image:: https://landscape.io/github/c0fec0de/defaultlist/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/c0fec0de/defaultlist/master
+
 Documentation
 =============
 
@@ -38,6 +44,13 @@ Added indicies are filled with None by default.
 >>> l[4]
 >>> l
 [None, None, 'C', None, None]
+
+Slices and negative indicies are supported likewise
+
+>>> l[1:4]
+[None, 'C', None]
+>>> l[-3]
+'C'
 
 Simple factory functions can be created via lambda.
 
