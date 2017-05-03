@@ -6,33 +6,39 @@ from setuptools import setup
 from codecs import open
 from os import path
 
-config = {
-    'name': "defaultlist",
-    'version': "0.1.0",
-    'author': 'c0fec0de',
-    'author_email': 'c0fec0de@gmail.com',
-    'description': " collections.defaultdict equivalent implementation of list.",
-    'url': "https://github.com/c0fec0de/defaultlist",
-    'license': 'Apache 2.0',
-    'classifiers': [
-        'Development Status :: 3 - Alpha',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-    ],
-    'keywords': 'defaultlist list defaultdict collections',
-    'py_modules': ['defaultlist'],
-    'extras_require': {
-        'dev': ['check-manifest'],
-        'test': ['coverage'],
-    },
-    'test_suite': 'nose.collector',
+
+def _read_metainfo(filepath):
+    import re
+    pat = re.compile(r"__(?P<name>[a-z_]+)__ = (?P<expr>.*)")
+    metainfo = {}
+    with open(filepath) as fh:
+        for line in fh:
+            match = pat.match(line)
+            if match:
+                metainfo[match.group("name")] = eval(match.group("expr"))
+    return metainfo
+
+
+config = _read_metainfo("defaultlist.py")
+config['license'] = 'Apache 2.0'
+config['classifiers'] = [
+    'Development Status :: 3 - Alpha',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+]
+config['keywords'] = 'defaultlist list defaultdict collections'
+config['py_modules'] = ['defaultlist']
+config['extras_require'] = {
+    'dev': ['check-manifest'],
+    'test': ['coverage'],
 }
+config['test_suite'] = 'nose.collector'
+
 
 # Get the long description from the README file
 here = path.abspath(path.dirname(__file__))

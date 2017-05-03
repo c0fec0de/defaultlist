@@ -57,11 +57,16 @@ Please be aware that these functions are shared between shallow copies of the li
 9
 >>> l
 [0, 1, 'C', 3, 4, 8, 9]
-
-
 """
 
 import sys
+
+__name__ = "defaultlist"
+__version__ = "0.1.0"
+__author__ = 'c0fec0de'
+__author_email__ = 'c0fec0de@gmail.com'
+__description__ = " collections.defaultdict equivalent implementation of list."
+__url__ = "https://github.com/c0fec0de/defaultlist"
 
 
 class defaultlist(list):
