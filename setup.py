@@ -20,6 +20,7 @@ def _read_metainfo(filepath):
 
 
 config = _read_metainfo("defaultlist.py")
+config['name'] = 'defaultlist'
 config['license'] = 'Apache 2.0'
 config['classifiers'] = [
     'Development Status :: 5 - Production/Stable',
