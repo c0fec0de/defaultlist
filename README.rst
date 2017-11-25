@@ -35,6 +35,7 @@ List extending automatically to the maximum requested length.
 
 Added indicies are filled with None by default.
 
+>>> from defaultlist import defaultlist
 >>> l = defaultlist()
 >>> l
 []
