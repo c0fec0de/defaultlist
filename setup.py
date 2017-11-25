@@ -22,7 +22,7 @@ def _read_metainfo(filepath):
 config = _read_metainfo("defaultlist.py")
 config['license'] = 'Apache 2.0'
 config['classifiers'] = [
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 5 - Production/Stable',
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.6',
     'Programming Language :: Python :: 2.7',

@@ -18,7 +18,7 @@ import os
 
 
 name = "defaultlist"
-version = "0.1.0"
+version = "1.0.0"
 author = 'c0fec0de'
 description = "collections.defaultdict equivalent implementation of list"
 

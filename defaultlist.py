@@ -61,7 +61,7 @@ Please be aware that these functions are shared between shallow copies of the li
 
 import sys
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __author__ = 'c0fec0de'
 __author_email__ = 'c0fec0de@gmail.com'
 __description__ = " collections.defaultdict equivalent implementation of list."

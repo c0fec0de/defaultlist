@@ -11,8 +11,8 @@ defaultlist
 .. image:: https://coveralls.io/repos/github/c0fec0de/defaultlist/badge.svg
     :target: https://coveralls.io/github/c0fec0de/defaultlist
 
-.. image:: https://readthedocs.org/projects/defaultlist/badge/?version=0.1.0
-    :target: http://defaultlist.readthedocs.io/en/0.1.0/?badge=0.1.0
+.. image:: https://readthedocs.org/projects/defaultlist/badge/?version=1.0.0
+    :target: http://defaultlist.readthedocs.io/en/1.0.0/?badge=1.0.0
 
 .. image:: https://codeclimate.com/github/c0fec0de/defaultlist.png
     :target: https://codeclimate.com/github/c0fec0de/defaultlist
