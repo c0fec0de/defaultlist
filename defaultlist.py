@@ -61,7 +61,6 @@ Please be aware that these functions are shared between shallow copies of the li
 
 import sys
 
-__name__ = "defaultlist"
 __version__ = "0.1.0"
 __author__ = 'c0fec0de'
 __author_email__ = 'c0fec0de@gmail.com'
@@ -79,10 +78,11 @@ class defaultlist(list):
 
             factory: Function called for every missing index.
         """
-        if factory is None:
-            def factory():
-                return None
-        self.__factory = factory
+        self.__factory = factory or defaultlist.__nonefactory
+
+    @staticmethod
+    def __nonefactory():
+        return None
 
     def __fill(self, index):
         missing = index - len(self) + 1
