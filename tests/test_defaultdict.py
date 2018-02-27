@@ -198,4 +198,3 @@ def test_initial_data():
     eq_(l2[-1], None)
     l2[-1] = 'last?'
     eq_(l2[-1], 'last?')
-

@@ -90,7 +90,7 @@ class defaultlist(list):
             factory: Function called for every missing index.
         """
         self.__factory = factory or defaultlist.__nonefactory
-	list.__init__(self, *args, **kwargs)
+        list.__init__(self, *args, **kwargs)
 
     @staticmethod
     def __nonefactory():
