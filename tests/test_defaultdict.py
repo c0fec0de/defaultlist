@@ -183,3 +183,19 @@ def test_len():
     eq_(len(l), 3)
     l[4]
     eq_(len(l), 5)
+
+def test_initial_data():
+    l = defaultlist(None, ['a', 'b'])
+    eq_(len(l), 2)
+    l[15] = 42
+    eq_(len(l), 16)
+    eq_(l[1], 'b')
+
+    l2 = defaultlist(None, [None, None, 1, None])
+    eq_(len(l2), 4)
+    l2[1] = 'q'
+    eq_(l2[1:3], ['q', 1])
+    eq_(l2[-1], None)
+    l2[-1] = 'last?'
+    eq_(l2[-1], 'last?')
+

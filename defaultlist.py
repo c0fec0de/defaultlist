@@ -13,6 +13,17 @@ Added indicies are filled with `None` by default.
 >>> l
 [None, None, 'C', None, None]
 
+However, you can specify initial values to the list just like in defaultdict.
+
+>>> l = defaultlist(None, [123, 'abc', 'qwerty'])
+>>> l
+[123, 'abc', 'qwerty']
+>>> l[8] = "C"
+>>> l
+[123, 'abc', 'qwerty', None, None, None, None, None, 'C']
+>>> l[4]
+>>>
+
 Slices and negative indicies are supported likewise
 
 >>> l[1:4]
@@ -70,7 +81,7 @@ __url__ = "https://github.com/c0fec0de/defaultlist"
 
 class defaultlist(list):
 
-    def __init__(self, factory=None):
+    def __init__(self, factory=None, *args, **kwargs):
         """
         List extending automatically to the maximum requested length.
 
@@ -79,6 +90,7 @@ class defaultlist(list):
             factory: Function called for every missing index.
         """
         self.__factory = factory or defaultlist.__nonefactory
+	list.__init__(self, *args, **kwargs)
 
     @staticmethod
     def __nonefactory():

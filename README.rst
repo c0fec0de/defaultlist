@@ -46,6 +46,17 @@ Added indicies are filled with None by default.
 >>> l
 [None, None, 'C', None, None]
 
+However, you can specify initial values to the list just like in defaultdict.
+
+>>> l = defaultlist(None, [123, 'abc', 'qwerty'])
+>>> l
+[123, 'abc', 'qwerty']
+>>> l[8] = "C"
+>>> l
+[123, 'abc', 'qwerty', None, None, None, None, None, 'C']
+>>> l[4]
+>>>
+
 Slices and negative indicies are supported likewise
 
 >>> l[1:4]
