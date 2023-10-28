@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "defaultlist"
-version = "1.0.0"
+version = "1.1.0"
 description = "Automatically Extending List"
 authors = [
     "c0fec0de <c0fec0de@gmail.com>"

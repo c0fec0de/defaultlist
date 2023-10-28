@@ -10,8 +10,8 @@
 .. image:: https://coveralls.io/repos/github/c0fec0de/defaultlist/badge.svg
     :target: https://coveralls.io/github/c0fec0de/defaultlist
 
-.. image:: https://readthedocs.org/projects/defaultlist/badge/?version=1.0.0
-    :target: https://defaultlist.readthedocs.io/en/1.0.0/?badge=1.0.0
+.. image:: https://readthedocs.org/projects/defaultlist/badge/?version=1.1.0
+    :target: https://defaultlist.readthedocs.io/en/1.1.0/?badge=1.1.0
 
 .. image:: https://img.shields.io/pypi/pyversions/defaultlist.svg
    :target: https://pypi.python.org/pypi/defaultlist
@@ -44,9 +44,9 @@
 Documentation
 =============
 
-The Documentation_ is hosted on http://defaultlist.readthedocs.io/en/1.0.0/
+The Documentation_ is hosted on http://defaultlist.readthedocs.io/en/1.1.0/
 
-.. _Documentation: http://defaultlist.readthedocs.io/en/1.0.0/
+.. _Documentation: http://defaultlist.readthedocs.io/en/1.1.0/
 
 Getting started
 ===============
