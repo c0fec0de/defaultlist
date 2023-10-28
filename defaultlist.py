@@ -20,6 +20,16 @@ Slices and negative indicies are supported likewise
 >>> l[-3]
 'C'
 
+However, you can specify initial values to the list just like in defaultdict.
+
+>>> l = defaultlist(None, [123, 'abc', 'qwerty'])
+>>> l
+[123, 'abc', 'qwerty']
+>>> l[8] = "C"
+>>> l
+[123, 'abc', 'qwerty', None, None, None, None, None, 'C']
+>>> l[4]
+
 Simple factory functions can be created via `lambda`.
 
 >>> l = defaultlist(lambda: 'empty')
@@ -73,8 +83,14 @@ class defaultlist(list):
         factory: Function called for every missing index.
     """
 
-    def __init__(self, factory=None):
+    def __init__(self, factory=None, data=None):
         self.__factory = factory or defaultlist.__nonefactory
+        if data:
+            list.__init__(self, data)
+        else:
+            list.__init__(
+                self,
+            )
 
     @staticmethod
     def __nonefactory():

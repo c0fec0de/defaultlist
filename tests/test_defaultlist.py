@@ -189,3 +189,20 @@ def test_len():
     assert len(dfl) == 3
     assert dfl[4] is None
     assert len(dfl) == 5
+
+
+def test_initial_data():
+    """Initial Data"""
+    dfl = defaultlist(None, ["a", "b"])
+    assert len(dfl) == 2
+    dfl[15] = 42
+    assert len(dfl) == 16
+    assert dfl[1] == "b"
+
+    dfl2 = defaultlist(None, [None, None, 1, None])
+    assert len(dfl2) == 4
+    dfl2[1] = "q"
+    assert dfl2[1:3] == ["q", 1]
+    assert dfl2[-1] is None
+    dfl2[-1] = "last?"
+    assert dfl2[-1] == "last?"
