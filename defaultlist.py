@@ -1,5 +1,5 @@
 """
-List extending automatically to the maximum requested length.
+Automatically Extending List.
 
 Added indicies are filled with `None` by default.
 
@@ -61,23 +61,19 @@ Please be aware that these functions are shared between shallow copies of the li
 
 import sys
 
-__version__ = "1.0.0"
-__author__ = 'c0fec0de'
-__author_email__ = 'c0fec0de@gmail.com'
-__description__ = " collections.defaultdict equivalent implementation of list."
-__url__ = "https://github.com/c0fec0de/defaultlist"
 
-
+# pylint: disable=invalid-name
 class defaultlist(list):
 
+    """
+    List extending automatically to the maximum requested length.
+
+    Keyword Args:
+
+        factory: Function called for every missing index.
+    """
+
     def __init__(self, factory=None):
-        """
-        List extending automatically to the maximum requested length.
-
-        Keyword Args:
-
-            factory: Function called for every missing index.
-        """
         self.__factory = factory or defaultlist.__nonefactory
 
     @staticmethod
@@ -96,13 +92,13 @@ class defaultlist(list):
     def __getitem__(self, index):
         if isinstance(index, slice):
             return self.__getslice(index.start, index.stop, index.step)
-        else:
-            self.__fill(index)
-            return list.__getitem__(self, index)
+
+        self.__fill(index)
+        return list.__getitem__(self, index)
 
     def __getslice__(self, start, stop, step=None):  # pragma: no cover
         # python 2.x legacy
-        if stop == sys.maxint:
+        if stop == sys.maxsize:
             stop = None
         return self.__getslice(start, stop, step)
 
@@ -130,8 +126,8 @@ class defaultlist(list):
             r = self.copy()
             r += other
             return r
-        else:
-            return list.__add__(self, other)
+
+        return list.__add__(self, other)
 
     def copy(self):
         """Return a shallow copy of the list. Equivalent to a[:]."""
