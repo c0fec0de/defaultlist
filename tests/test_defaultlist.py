@@ -101,6 +101,7 @@ def test_slice_ref():
     assert dfl[-4:8] == rng[-4:8]
     assert dfl[0:] == rng[0:]
     assert dfl[:-2] == rng[:-2]
+    assert dfl[:10] == rng[:10]
     assert list(dfl) == rng
 
 
@@ -115,36 +116,36 @@ def test_slice_step():
     dfl[5] = "f"
 
     dat = dfl[1:6:2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None]
+    assert dfl == ["a", "b", "c", "d", "e", "f"]
     assert dat == ["b", "d", "f"]
 
     dat = dfl[:6:2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None]
+    assert dfl == ["a", "b", "c", "d", "e", "f"]
     assert dat == ["a", "c", "e"]
 
     dat = dfl[1:6:2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None]
+    assert dfl == ["a", "b", "c", "d", "e", "f"]
     assert dat == ["b", "d", "f"]
 
     dat = dfl[:7:2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None, None]
+    assert dfl == ["a", "b", "c", "d", "e", "f", None]
     assert dat == ["a", "c", "e", None]
 
     dat = dfl[1:7:2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None, None]
+    assert dfl == ["a", "b", "c", "d", "e", "f", None]
     assert dat == ["b", "d", "f"]
 
     dat = dfl[::2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None, None]
+    assert dfl == ["a", "b", "c", "d", "e", "f", None]
     assert dat == ["a", "c", "e", None]
 
     dat = dfl[1::2]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None, None]
-    assert dat == ["b", "d", "f", None]
+    assert dfl == ["a", "b", "c", "d", "e", "f", None]
+    assert dat == ["b", "d", "f"]
 
     dat = dfl[1::]
-    assert dfl == ["a", "b", "c", "d", "e", "f", None, None]
-    assert dat == ["b", "c", "d", "e", "f", None, None]
+    assert dfl == ["a", "b", "c", "d", "e", "f", None]
+    assert dat == ["b", "c", "d", "e", "f", None]
 
 
 def test_copy():

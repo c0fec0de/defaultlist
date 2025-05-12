@@ -110,7 +110,7 @@ class defaultlist(list):
         return idx
 
     def __getslice(self, start, stop, step):
-        end = max((start or 0, stop or 0, 0))
+        end = max((start or 0, stop-1 if stop else 0, 0))
         if end:
             self.__fill(end)
         start = self.__normidx(start, 0)
