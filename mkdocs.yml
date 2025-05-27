@@ -29,8 +29,8 @@ nav:
   - Home:
       - Welcome to DEFAULTLIST: index.md
       - Contributing: contributing.md
-  - API:
-      - Overview: api.md
+  - Usage: usage.md
+  - API: api.md
 
 plugins:
   - search
