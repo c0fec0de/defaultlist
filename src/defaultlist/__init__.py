@@ -1,70 +1,33 @@
+# MIT License
+#
+# Copyright (c) 2025 c0fec0de
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 """
 Automatically Extending List.
-
-Added indicies are filled with `None` by default.
-
->>> l = defaultlist()
->>> l
-[]
->>> l[2] = "C"
->>> l
-[None, None, 'C']
->>> l[4]
->>> l
-[None, None, 'C', None, None]
-
-Slices and negative indicies are supported likewise
-
->>> l[1:4]
-[None, 'C', None]
->>> l[-3]
-'C'
-
-Simple factory functions can be created via `lambda`.
-
->>> l = defaultlist(lambda: 'empty')
->>> l[2] = "C"
->>> l[4]
-'empty'
->>> l
-['empty', 'empty', 'C', 'empty', 'empty']
-
-It is also possible to implement advanced factory functions:
-
->>> def inc():
-...     inc.counter += 1
-...     return inc.counter
->>> inc.counter = -1
->>> l = defaultlist(inc)
->>> l[2] = "C"
->>> l
-[0, 1, 'C']
->>> l[4]
-4
->>> l
-[0, 1, 'C', 3, 4]
-
-Please be aware that these functions are shared between shallow copies of the list.
-
->>> c = l[1:-1]
->>> c
-[1, 'C', 3]
->>> c[5]
-7
->>> c
-[1, 'C', 3, 5, 6, 7]
->>> l[6]
-9
->>> l
-[0, 1, 'C', 3, 4, 8, 9]
 """
 
 import sys
 
 
-# pylint: disable=invalid-name
-class defaultlist(list):
-
+class defaultlist(list):  # noqa: N801
     """
     List extending automatically to the maximum requested length.
 
@@ -110,7 +73,7 @@ class defaultlist(list):
         return idx
 
     def __getslice(self, start, stop, step):
-        end = max((start or 0, stop-1 if stop else 0, 0))
+        end = max((start or 0, stop - 1 if stop else 0, 0))
         if end:
             self.__fill(end)
         start = self.__normidx(start, 0)

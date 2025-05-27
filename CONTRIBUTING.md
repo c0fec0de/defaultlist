@@ -1,57 +1,55 @@
-# Contribute
+# CONTRIBUTING
 
-## Testing
+Please follow the github workflow. Create a ticket and/or branch. Create a pull-request.
 
-### Create Environment
+## Local Development
 
-Run these commands just the first time:
+### Installation
 
-```bash
-# Ensure python3 is installed
-python3 -m venv .venv
-source .venv/bin/activate
-pip install tox "poetry>=1.4"
-```
+Please install these tools:
 
-### Enter Environment
+* [`uv` Installation](https://docs.astral.sh/uv/getting-started/installation/)
+* [`make`](https://www.gnu.org/software/make/)
+* [`git`](https://git-scm.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 
-Run this command once you open a new shell:
 
-```bash
-source .venv/bin/activate
-```
-
-### Test Your Changes
+### Editor
+Start Visual Studio Code:
 
 ```bash
-# test
-tox
+make code
 ```
 
-### Release
+### Testing
+
+Run auto-formatting, linting, tests and documentation build:
 
 ```bash
-prev_version=$(poetry version -s)
-
-# Ensure main
-git checkout main
-git pull
-
-# Version Bump
-poetry version minor
-# OR
-poetry version patch
-
-# Commit, Tag and Push
-version=$(poetry version -s)
-
-sed "s/$prev_version/$version/g" -i README.rst
-sed "s/$prev_version/$version/g" -i docs/index.rst
-
-git commit -m"version bump to ${version}" pyproject.toml README.rst docs/index.rst
-git tag "${version}" -m "Release ${version}"
-git push
-git push --tags
-
-# Publishing is handled by CI
+make all
 ```
+
+See `make help` for any further details.
+
+
+## Project Structure
+
+The project contains these files and directories:
+
+| File/Directory | Description |
+|---|---|
+| `src/` | Python Package Sources - the files this is all about |
+| `pyproject.toml` | Python Package Meta File. Also contains all tool settings |
+| `.gitignore` | Lists of files and directories ignored by version control system |
+| `.github/` | Github Settings |
+| `.readthedocs.yaml` | Documentation Server Configuration |
+| `.pre-commit-config.yaml` | Pre-Commit Check Configuration |
+| `uv.lock` | File with resolved python package dependencies |
+
+Next to that, there are some temporary files ignored by version control system.
+
+| File/Directory | Description |
+|---|---|
+| `htmlcov/` | Test Execution Code Coverage Report in HTML format |
+| `report.xml` | Test Execution Report |
+| `.venv` | Virtual Environments |
